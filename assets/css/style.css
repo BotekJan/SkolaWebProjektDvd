@@ -1,0 +1,13 @@
+.text {
+    color: blue;
+}
+
+.otherText {
+    color: darkGrey;
+    text-shadow: 2px 2px black;
+}
+
+.lines {
+    text-align: center;
+    text-decoration: underline;
+}
