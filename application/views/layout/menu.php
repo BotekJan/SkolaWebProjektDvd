@@ -13,7 +13,7 @@
           "class" => "dropdown-item"
       );
         foreach ($dropdown as $key => $row) {
-          echo anchor('kategorie/'.$row->id.'/seznam', $row->nazev, $pole).PHP_EOL;
+          echo anchor('kategorie/'.$row->id.'/karty', $row->nazev, $pole).PHP_EOL;
           
         }
       ?>

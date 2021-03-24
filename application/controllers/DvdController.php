@@ -52,6 +52,14 @@ class DvdController extends CI_Controller
 		$this->layout->generate($this->data);
 	}
 
+	public function kartyVydavatel($ID){
+		$this->data["dvd"] = $this->DvdModel->getSeznamDvdPodleVydavatel($ID);
+		$this->data["nazevVydavatel"] = $this->data["dvd"][0]->nazevVydavatel;
+		$this->data["title"] = "Dvd od vydavatele ".$this->data["nazevVydavatel"];
+		$this->data["main"] = "VydavatelKartyView";
+		$this->layout->generate($this->data);
+	}
+
 	public function reziser($ID){
 		$this->data["dvd"] = $this->DvdModel->getSeznamDvdPodleReziser($ID);
 		$this->data["nazevReziser"] = $this->data["dvd"][0]->reziserJmeno;
@@ -61,11 +69,28 @@ class DvdController extends CI_Controller
 		$this->layout->generate($this->data);
 	}
 
+	public function kartyReziser($ID){
+		$this->data["dvd"] = $this->DvdModel->getSeznamDvdPodleReziser($ID);
+		$this->data["nazevReziser"] = $this->data["dvd"][0]->reziserJmeno;
+		$this->data["vlajka"] = '<img src="'.base_url().'assets/vlajky/'.$this->data["dvd"][0]->vlajka.'.svg" style="height: 50px">';
+		$this->data["title"] = "Dvd od rezisera ".$this->data["nazevReziser"];
+		$this->data["main"] = "ReziserKartyView";
+		$this->layout->generate($this->data);
+	}
+
 	public function rok($rok){
 		$this->data["dvd"] = $this->DvdModel->getSeznamDvdPodleRok($rok);
 		$this->data["rok"] = $rok;
 		$this->data["title"] = "Dvd z roku ".$rok;
 		$this->data["main"] = "FilmyPodleRokuView";
+		$this->layout->generate($this->data);
+	}
+
+	public function rokKarty($rok){
+		$this->data["dvd"] = $this->DvdModel->getSeznamDvdPodleRok($rok);
+		$this->data["rok"] = $rok;
+		$this->data["title"] = "Dvd z roku ".$rok;
+		$this->data["main"] = "RokKartyView";
 		$this->layout->generate($this->data);
 	}
 

@@ -9,8 +9,8 @@
         $this->table->add_row(
             $row->nazev,
             anchor('kategorie/'.$row->kategorieID.'/seznam', $row->nazevKategorie),
-            anchor('reziser/'.$row->reziserID, $row->reziserJmeno),
-            anchor('rok/'.$row->rok_vydani, $row->rok_vydani)
+            anchor('reziser/'.$row->reziserID, $row->reziserJmeno.'/karty'),
+            anchor('rok/'.$row->rok_vydani.'/karty', $row->rok_vydani)
         );
     }
 

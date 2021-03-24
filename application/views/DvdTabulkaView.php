@@ -45,7 +45,7 @@
 
     echo $this->table->generate();
 
-    echo anchor('kategorie', '⬅️ kategorie', array('class' => 'btn btn-primary btn-block'))
+    
 
     ?>
 </div>
