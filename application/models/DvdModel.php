@@ -6,6 +6,21 @@ class DvdModel extends CI_Model {
         parent::__construct();
     }
 
+    public function getAmountOfDvd(){
+        $query = $this->db->query('SELECT count(id_dvd) as amount FROM dvd')->result();
+        
+        return $query[0]->amount;
+    }
+
+    public function getAllDvdForPagination($cisloStranky, $perPage){
+        $this->db->select();
+        $this->db->from('dvd');
+        $this->db->limit($perPage, $cisloStranky * $perPage);
+        
+
+        return $this->db->get()->result();
+    }
+
     public function getDvdCategories(){
         $this->db->select('nazev, id');
         $this->db->from('kategorie');

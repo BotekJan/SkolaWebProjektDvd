@@ -52,12 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['dvd/(:any)'] = 'DvdController/dvd/$1';
+
 $route['kategorie'] = 'DvdController/kategorie';
 $route['kategorie/(:any)/seznam'] = 'DvdController/seznamDvd/$1';
 $route['kategorie/(:any)/karty'] = 'DvdController/kartyDvd/$1';
+
 $route['vydavatel/(:any)'] = 'DvdController/vydavatel/$1';
 $route['vydavatel/(:any)/karty'] = 'DvdController/kartyVydavatel/$1';
+
 $route['reziser/(:any)'] = 'DvdController/reziser/$1';
 $route['reziser/(:any)/karty'] = 'DvdController/kartyReziser/$1';
+
 $route['rok/(:any)'] = 'DvdController/rok/$1';
 $route['rok/(:any)/karty'] = 'DvdController/rokKarty/$1';
