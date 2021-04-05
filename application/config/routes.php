@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['dvd/(:any)'] = 'DvdController/dvd/$1';
+$route['dvd/(:num)/(:num)'] = 'DvdController/dvd/$1/$2';
 
 $route['kategorie'] = 'DvdController/kategorie';
 $route['kategorie/(:any)/seznam'] = 'DvdController/seznamDvd/$1';

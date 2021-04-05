@@ -1,6 +1,13 @@
 <div class="col-md-8 offset-md-2">
     <h1 class="text-center">Všechna DVD</h1>
-
+    <ul class="list-group list-group-horizontal paginationNav">
+        <li class="list-group-item">počet na stránku: </li>
+        <?php
+            for ($i = 5; $i <= 20; $i = $i + 5) {
+                echo '<li class="list-group-item">'.anchor('dvd/'.$i.'/1', $i).'</li>';
+              }
+        ?>
+    </ul>
     <?php
 
     $this->table->set_heading('Název', 'id reziser', 'cena s dph', 'druh', 'rok vydani', 'id vydavatel', 'id dvd');
@@ -47,10 +54,10 @@
     $this->table->set_template($template);
 
     echo $this->table->generate();
-?>
+    ?>
 
-    <nav aria-label="Page navigation example">
-            <?php echo $this->pagination->create_links();?>
+    <nav aria-label="pagination">
+        <?php echo $this->pagination->create_links(); ?>
     </nav>
-    
+
 </div>
