@@ -68,3 +68,10 @@ $route['reziser/(:any)/karty'] = 'DvdController/kartyReziser/$1';
 
 $route['rok/(:any)'] = 'DvdController/rok/$1';
 $route['rok/(:any)/karty'] = 'DvdController/rokKarty/$1';
+
+$route['form'] = "DvdController/form";
+$route['form/send'] = "DvdController/formSend";
+
+$route['delete/(:num)/(:num)/(:num)'] = "DvdController/delete/$1/$2/$3";
+$route['edit/(:num)/(:num)/(:num)'] = "DvdController/formEdit/$1/$2/$3";
+$route['edit/send/(:num)/(:num)/(:num)'] = "DvdController/editSend/$1/$2/$3";

@@ -13,6 +13,7 @@ class DvdModel extends CI_Model {
     }
 
     public function getAllDvdForPagination($cisloStranky, $perPage){
+        
         $this->db->select();
         $this->db->from('dvd');
         $this->db->limit($perPage, $cisloStranky * $perPage);
@@ -28,8 +29,16 @@ class DvdModel extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function getDvd($id){
+        $this->db->select();
+        $this->db->from('dvd');
+        $this->db->where('id_dvd', $id);
+
+        return $this->db->get()->result()[0];
+    }
+
     public function getDvdKategorieById($ID){
-        $this->db->select('nazev');
+        $this->db->select('nazev, id');
         $this->db->from('kategorie');
         $this->db->where('id', $ID);
 
@@ -112,6 +121,30 @@ class DvdModel extends CI_Model {
         $this->db->join('vydavatel', 'vydavatel.id = dvd.id_vydavatel', 'inner');
 
         return $this->db->get()->result();
+    }
+/**
+ * 
+ * 
+ */
+    public function postDvd($name, $category){
+        $data = array(
+            'nazev' => $name,
+            'druh' => $category
+        );
+
+        $this->db->insert('dvd', $data);
+    }
+
+    public function deleteDvd($id){
+        $this->db->where('id_dvd', $id);
+        $this->db->delete('dvd');
+    }
+
+    public function editDvd($id, $nazev, $kategorie){
+        $this->db->set('nazev', $nazev);
+        $this->db->set('druh', $kategorie);
+        $this->db->where('id_dvd', $id);
+        $this->db->update('dvd'); 
     }
 
     public function getAmountOfCategories(){

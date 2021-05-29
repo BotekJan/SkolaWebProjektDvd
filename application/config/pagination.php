@@ -1,8 +1,8 @@
 <?php
-$config['num_links'] = 3;
+$config['num_links'] = 2;
 $config['use_page_numbers'] = TRUE;
 
-$config['full_tag_open'] = '<ul class="pagination justify-content-center">';
+$config['full_tag_open'] = '<ul class="pagination">';
 $config['full_tag_close'] = '</ul>';
 
 
@@ -23,7 +23,7 @@ $config['prev_tag_close'] = '</a></li>';
 
 //předcházející strana, jedná se o symbol dvojité šipky vlevo, opět vše obalujeme do <li>
 $config['next_link'] = '&raquo';
-$config['next_tag_open'] = '<li class="page-item"><a class="page-link" href="';
+$config['next_tag_open'] = '<li class="page-item"><a class="page-link" ';
 $config['next_tag_close'] = '</a></li>';
 
 //následující strana, jedná se o symbol dvojité šipky vpravo, opět vše obalujeme do <li>

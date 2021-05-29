@@ -9,6 +9,7 @@ class DvdController extends CI_Controller
 		parent::__construct();
 		$this->load->model('DvdModel');
 		$this->data["dropdown"] = $this->DvdModel->getDvdCategories();
+		$this->load->library('library');
 	}
 
 	public function index()
@@ -26,6 +27,8 @@ class DvdController extends CI_Controller
 		$config['first_url'] = $config['base_url'].'1';
 		$this->config->load('pagination');
 
+		//var_dump($this->config);
+
 		$cisloStranky -= 1;
 
 		$this->pagination->initialize($config);
@@ -34,6 +37,8 @@ class DvdController extends CI_Controller
 
 		$this->data["title"] = "všechna dvd";
 		$this->data["main"] = "DvdStrankovaniView";
+		$this->data["pocetNaStranku"] = $pocetNaStranku;
+		$this->data["cisloStranky"] = $cisloStranky + 1;
 		$this->layout->generate($this->data);
 	}
 
@@ -119,5 +124,39 @@ class DvdController extends CI_Controller
 		$this->data["title"] = "Dvd z roku " . $rok;
 		$this->data["main"] = "RokKartyView";
 		$this->layout->generate($this->data);
+	}
+
+	public function form(){		
+		$this->data["kategorie"] = $this->library->arrayForDropdown($this->DvdModel->getDvdCategories(), 'id', 'nazev');
+		$this->data["title"] = "Formulář";
+		$this->data["main"] = "FormView";
+		$this->layout->generate($this->data);
+	}
+
+	public function formSend(){		
+
+		$this->DvdModel->postDvd($this->input->post('name'), $this->input->post('kategorie'));
+		redirect('form');
+	}
+
+	public function delete($id, $pocetNaStranku, $cisloStranky){
+		$this->DvdModel->deleteDvd($id);
+		redirect('dvd/'.$pocetNaStranku.'/'.$cisloStranky);
+	}
+
+	public function formEdit($id, $pocetNaStranku, $cisloStranky){
+		$this->data['dvd'] = $this->DvdModel->getDvd($id);
+		$this->data["listKategorii"] = $this->library->arrayForDropdown($this->DvdModel->getDvdCategories(), 'id', 'nazev');
+		$this->data['pocetNaStranku'] = $pocetNaStranku;
+		$this->data['cisloStranky'] = $cisloStranky;
+		$this->data['main'] = 'editDvdView';
+		$this->data['title'] = 'Edit';
+
+		$this->layout->generate($this->data);
+	}
+
+	public function editSend($id, $pocetNaStranku, $cisloStranky){
+		$this->DvdModel->editDvd($id, $this->input->post('name'), $this->input->post('kategorie'));
+		redirect('dvd/'.$pocetNaStranku.'/'.$cisloStranky);
 	}
 }

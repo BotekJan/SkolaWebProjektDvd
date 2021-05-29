@@ -1,16 +1,20 @@
 <div class="col-md-8 offset-md-2">
     <h1 class="text-center">Všechna DVD</h1>
+    <?php
+    echo anchor('form', '➕ přidat', 'class="btn btn-success"')
+    ?>
+
     <ul class="list-group list-group-horizontal paginationNav">
         <li class="list-group-item">počet na stránku: </li>
         <?php
-            for ($i = 5; $i <= 20; $i = $i + 5) {
-                echo '<li class="list-group-item">'.anchor('dvd/'.$i.'/1', $i).'</li>';
-              }
+        for ($i = 5; $i <= 20; $i = $i + 5) {
+            echo '<li class="list-group-item">' . anchor('dvd/' . $i . '/1', $i) . '</li>';
+        }
         ?>
     </ul>
     <?php
 
-    $this->table->set_heading('Název', 'id reziser', 'cena s dph', 'druh', 'rok vydani', 'id vydavatel', 'id dvd');
+    $this->table->set_heading('Název', 'id reziser', 'cena s dph', 'druh', 'rok vydani', 'id vydavatel', 'id dvd', 'edit', 'delete');
 
     foreach ($dvd as $key => $row) {
         $this->table->add_row(
@@ -20,12 +24,14 @@
             $row->druh,
             $row->rok_vydani,
             $row->id_vydavatel,
-            $row->id_dvd
+            $row->id_dvd,
+            anchor('edit/' . $row->id_dvd . '/' . $pocetNaStranku . '/' . $cisloStranky, '✏️', 'class="btn btn-light"'),
+            anchor('delete/' . $row->id_dvd . '/' . $pocetNaStranku . '/' . $cisloStranky, 'delete', 'class="btn btn-danger"')
         );
     }
 
     $template = array(
-        'table_open'            => '<table class="table table-striped table-bordered">',
+        'table_open'            => '<table class="table">',
 
         'thead_open'            => '<thead>',
         'thead_close'           => '</thead>',
@@ -56,8 +62,10 @@
     echo $this->table->generate();
     ?>
 
+
     <nav aria-label="pagination">
         <?php echo $this->pagination->create_links(); ?>
     </nav>
 
+    
 </div>
